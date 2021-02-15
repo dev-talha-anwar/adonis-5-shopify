@@ -1,5 +1,6 @@
 import { Exception } from '@poppinss/utils'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Route from '@ioc:Adonis/Core/Route'
 
 export default class UnAuthorizedException extends Exception {
   constructor(message: string) {
@@ -12,6 +13,6 @@ export default class UnAuthorizedException extends Exception {
    */
   public async handle(error: this, { response }: HttpContextContract) {
     // response.status(error.status).send('<h1>Sorry you are not allowed to view this page</h1>')
-    response.redirect('login')
+    response.redirect(Route.makeUrl('login'))
   }
 }
