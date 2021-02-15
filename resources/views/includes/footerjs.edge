@@ -1,0 +1,20 @@
+@if(app_bridge() == 1)
+<script src="https://unpkg.com/@shopify/app-bridge"></script>
+<script type="text/javascript">
+    var AppBridge = window['app-bridge'];
+    var createApp = AppBridge.default;
+    var actions = AppBridge.actions;
+    var TitleBar = actions.TitleBar;
+    var Button = actions.Button;
+    var Redirect = actions.Redirect;
+    var titleBarOptions = {
+        title: 'Welcome',
+    };
+    var app = createApp({
+        apiKey: '{{ app_key() }}',
+        shopOrigin: '{{ auth.user.name }}',
+        forceRedirect: true,
+    });
+    var myTitleBar = TitleBar.create(app, titleBarOptions);
+</script>
+@endif

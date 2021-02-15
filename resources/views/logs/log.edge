@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Logs</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <!-- Material Kit CSS -->
+    <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="wrapper ">
+      <div class="sidebar" data-color="purple" data-background-color="white">
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li class="nav-item active">
+              <a class="nav-link refresh" href="#">
+                <i class="material-icons">refresh</i> 
+                  <p>Refresh</p>
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link clear" href="#">
+                <i class="material-icons">delete_sweep</i> 
+                  <p>Clear</p>
+              </a>
+            </li>
+            <!-- your sidebar here -->
+          </ul>
+        </div>
+      </div>
+      <div class="main-panel">
+        <div class="">
+          <div class="container-fluid">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Logs</h4>
+                  <p class="card-category"> Logs for testing</p>
+                </div>
+                <div class="card-body" style="word-break:break-all;">
+                  <div class="">
+                    <table class="table table-hover" id="datatables">
+                      @include('logs.table')
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/js/core/jquery.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script>
+      $(() => {
+        $('#datatables').DataTable({
+          "pagingType": "full_numbers",
+          "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+          ],
+          responsive: true,
+          language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search records",
+          }
+        });
+        $(".refresh").click(() => {
+          $.get("{{ route('logs') }}", response => {
+            $("#datatables").html(response.data);
+            $("#datatables").DataTable().destroy();
+            $("#datatables").DataTable();
+          });
+        });
+        $(".clear").click(() => {
+          $.get("{{ route('logs') }}?clean=true", response => {
+            $("#datatables").html(response.data);
+            $("#datatables").DataTable().destroy();
+            $("#datatables").DataTable();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+

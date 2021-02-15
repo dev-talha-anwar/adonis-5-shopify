@@ -1,0 +1,36 @@
+/**
+ *
+ * Feel free to let us know via PR, if you find something broken in this config
+ * file.
+ */
+
+import Env from '@ioc:Adonis/Core/Env'
+import { QueueConfig } from '@ioc:Adonis5/Queue'
+
+const queueConfig: QueueConfig = {
+  consumerPath: './app/Jobs/Consumers',
+  producerPath: './app/Jobs/Producers',
+
+  connection: {
+    /**
+		 * The prefix is for differentiating kue job names from
+		 * other redis-related tasks. Modify to your needs.
+		 *
+		 * @type {String}
+		 */
+    prefix: 'adonis5:queue',
+
+    redis: {
+      host: Env.get('QUEUE_REDIS_HOST', 'localhost')!.toString(),
+      port: parseInt(Env.get('QUEUE_REDIS_PORT', '6379')!.toString()),
+      db: parseInt(Env.get('QUEUE_REDIS_DB', '6379')!.toString()),
+      options: {},
+    },
+
+    restore: true,
+
+    worker: true,
+  },
+}
+
+export default queueConfig

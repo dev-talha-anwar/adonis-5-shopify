@@ -1,0 +1,43 @@
+<thead class=" text-primary">
+    <tr>
+      <th>Id</th>
+      <th>Message</th>
+    </tr>
+</thead>
+<tbody>
+    
+    @each((line,index) in data)
+        <tr>
+        <td>{{ (index + 1) }}</td>
+        <td class="text-primary">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="accordion{{ index+1 }}">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ index+1 }}" aria-expanded="true" aria-controls="collapse{{ index+1 }}">
+                        {{ line ? line.substr(0,50) : '' }}
+                        </button>
+                    </h5>
+                    <div id="collapse{{ (index+1) }}" class="collapse" aria-labelledby="heading{{ index+1 }}" data-parent="#accordion{{ index+1 }}">
+                        <div class="card-body">
+                        {{ line ? line : '' }}
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+        </tr>
+    @else
+        <tr>
+        <td>1</td>
+        <td class="text-primary"></td>
+        </tr>
+    @endeach
+</tbody>
+<tfoot>
+    <tr>
+        <th>Id</th>
+        <th>Message</th>
+    </tr>
+</tfoot>

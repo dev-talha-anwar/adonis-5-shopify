@@ -1,0 +1,42 @@
+{
+  "name": "adonis5shopify",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node ace build --production",
+    "start": "node server.js",
+    "dev": "node ace serve --watch"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^3.0.6",
+    "adonis-preset-ts": "^1.1.0",
+    "pino-pretty": "^4.3.0",
+    "typescript": "^4.1.2",
+    "youch": "^2.1.1",
+    "youch-terminal": "^1.0.1"
+  },
+  "dependencies": {
+    "@adonisjs/auth": "^5.1.1",
+    "@adonisjs/core": "^5.0.4-preview-rc-2.1",
+    "@adonisjs/lucid": "^10.0.0",
+    "@adonisjs/mail": "^5.2.3",
+    "@adonisjs/redis": "^5.0.9",
+    "@adonisjs/repl": "^1.1.6",
+    "@adonisjs/session": "^4.0.6",
+    "@adonisjs/view": "^3.0.10",
+    "@types/socket.io": "^2.1.13",
+    "adonis-mix-asset": "^2.2.1",
+    "adonis5-queue": "^1.0.7",
+    "axios": "^0.21.0",
+    "luxon": "^1.25.0",
+    "mysql": "^2.18.1",
+    "node-schedule": "^2.0.0",
+    "phc-bcrypt": "^1.0.4",
+    "proxy-addr": "^2.0.6",
+    "query-string": "^6.13.8",
+    "reflect-metadata": "^0.1.13",
+    "shopify-api-node": "^3.6.4",
+    "socket.io": "^3.1.1",
+    "source-map-support": "^0.5.19"
+  }
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Login</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Kit CSS -->
+<link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container w-100 h-100">
+      <div class="row w-100 h-100">
+        <div class="offset-md-4 col-md-4">
+          <div class="d-flex align-items-center justify-content-center w-100 h-100">
+            <div class="card">
+              <div class="card-header card-header-primary card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">account_circle</i>
+                </div>
+              </div>
+              <div class="card-body">
+                @include('includes.alert')
+                <form action="{{ route('auth') }}" class="login-form" method="get">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group bmd-form-group">
+                        <input type="url" class="form-control" name="shop" placeholder="Domain"/>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary pull-right">Login</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/core/jquery.min.js"></script>
+  <script src="assets/js/core/bootstrap-material-design.min.js"></script>
+</body>
+</html>
