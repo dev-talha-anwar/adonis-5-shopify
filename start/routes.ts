@@ -24,7 +24,8 @@ import './routes/index.ts'
 
 Route.get("/logs", "logs/LogController.index").as('logs');
 Route.get('test', async ({ response }) => {
-    // return Shopify.getInstance('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', 'alphaabc.myshopify.com').instance.webhook.list()
+    // await Shopify.getInstance('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', 'alphaabc.myshopify.com').instance.webhook.create({ 'topic': "products/update", 'address': 'https://crispyshopify.tk/webhook/products-update' })
+    // return await Shopify.instance.webhook.list();
 })
 // Route.any("index.php",({ response }) => {
 //     return response.route('login'); 

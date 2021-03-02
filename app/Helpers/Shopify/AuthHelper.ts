@@ -56,10 +56,11 @@ class AuthHelper {
     }
 
     public makeShopUrl(shop) {
+        let url = shop
         if (shop.search("https://") == -1 || shop.search("https://") != 0) {
-            return 'https://' + shop
+            url = 'https://' + url
         }
-        return shop
+        return url.replace(/\/$/, "")
     }
 
     public makeLoginUrl(domain) {

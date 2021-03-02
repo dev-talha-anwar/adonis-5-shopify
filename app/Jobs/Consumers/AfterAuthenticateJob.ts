@@ -4,10 +4,6 @@
  * @version 1.0.0
  * @adonis-version 5.0+
  */
-import Api from 'App/Helpers/Api'
-import Product from 'App/Models/Product'
-
-
 export default class AfterAuthenticateJob {
   public data: any
   public ctx: any
@@ -56,20 +52,6 @@ export default class AfterAuthenticateJob {
    * You can drop the async keyword if it is synchronous
    */
   public async handle() {
-    let shop = await Api.rest(this.data.shop)
-    let params = { limit: 250, fields: 'id' };
-    do {
-      const response = await shop.product.list(params);
-      let productsData: any = []
-      for (var key in response) {
-        if (response.hasOwnProperty(key)) {
-          productsData.push({
-            product_id: response[key]['id']
-          })
-        }
-      }
-      await Product.updateOrCreateMany('product_id', productsData)
-      params = response.nextPageParameters;
-    } while (params !== undefined);
+
   }
 }

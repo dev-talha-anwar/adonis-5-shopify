@@ -30,8 +30,18 @@ export default class WebhookController {
     public async handleWebhook({ request, response }) {
         let url = queryString.parseUrl(request.url()).url
         url = url.substring(url.lastIndexOf('/') + 1)
-        url = url.replace(/(^\w|-\w)/g, url.replace(/-/, "").toUpperCase())
-        Queue.dispatch(new this.Jobs[url](request.all()))
+        url = url.split('-')
+        let total = "";
+        for (const part of url) {
+            total += part.replace(
+                /\w\S*/g,
+                function (txt) {
+                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                }
+            )
+        }
+        let job = new this.Jobs[total + "Job"](request.all())
+        Queue.dispatch(job)
         return response.status(200)
     }
 }

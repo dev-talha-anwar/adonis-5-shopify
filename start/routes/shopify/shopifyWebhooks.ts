@@ -7,4 +7,4 @@ Route.group(() => {
     Route.post("shop/redact", "WebhookController.shopRedact")
     Route.post("*", "WebhookController.handleWebhook")
 
-}).middleware('auth.webhook').prefix('webhook/').namespace('App/Controllers/Http/Auth/Shopify')
+}).middleware('auth.webhook').prefix('webhook').namespace('App/Controllers/Http/Auth/Shopify')
