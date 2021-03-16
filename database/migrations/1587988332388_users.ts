@@ -16,7 +16,7 @@ export default class UsersSchema extends BaseSchema {
       table.boolean('shopify_freemium').defaultTo(false)
       table.integer('plan_id').unsigned().nullable()
       table.timestamps(true)
-      table.timestamp('deleted_at').nullable();
+      table.string('deleted_at').nullable();
       table.foreign('plan_id').references('id').inTable('plans');
     })
   }
