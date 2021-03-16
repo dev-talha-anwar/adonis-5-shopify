@@ -44,12 +44,21 @@ export default class AuthShopify {
     }
     if (hmac === true) {
       await session.put('user_session_token', SESSION_TOKEN)
-      const user = await auth.authenticate()
-      if (user) {
-        if (user.name !== domain) {
-          session.forget('user_session_token')
-          return response.redirect(Route.makeUrl('auth'), { shop: domain })
+
+        const user = await auth.authenticate()
+        if(user !== undefined && user.deletedAt == null)
+        {
+          if (user.name !== domain) {
+            session.forget('shopify_user_session')
+            return response.redirect(Route.makeUrl('auth'), { shop: domain })
+          }
         }
+        else
+        {
+            session.forget('shopify_user_session')
+            return response.redirect(Route.makeUrl('auth'), { shop: domain })
+        }
+
         var c = await session.get('user_session_token')
         if (c !== SESSION_TOKEN) {
           session.forget('user_session_token')

@@ -49,7 +49,7 @@ export default class Charges extends BaseSchema {
       table.foreign('plan_id').references('id').inTable('plans')
       table.timestamps(true)
       // Allows for soft deleting
-      table.timestamp('deleted_at').nullable();
+      table.string('deleted_at').nullable();
       
     })
   }
